@@ -29,7 +29,7 @@ const SelectPlayerScreen = ({changePlayerNumber}) => {
         <div className="bg-white p-5 max-w-100 max-h-160 rounded-xl shadow-lg border-1 border-gray-300">
             <ChangeNumberBtn text="-" onClick={() => changeDisplayNumber('subtract')}></ChangeNumberBtn> {/* função com parâmetro só pode ser passada do jeito acima */}
             <span>{displayNumber}</span>
-            <ChangeNumberBtn text="+" onClick={() => changeDisplayNumber('add')}></ChangeNumberBtn>
+            <ChangeNumberBtn text="++" onClick={() => changeDisplayNumber('add')}></ChangeNumberBtn>
             <StartGameBtn text="start" onClick={() => changePlayerNumber(displayNumber)}></StartGameBtn>
         </div>
     </motion.div>

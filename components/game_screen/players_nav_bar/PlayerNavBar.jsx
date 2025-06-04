@@ -16,7 +16,7 @@ const PlayerNavBar = ({playerArray}) => {
         <div className="bg-amber-100 container z-10 fixed top-4 left-4  max-w-72 flex flex-col">
             {/* esse motion.div da toggle na animação de movimento para a direita, 
             o pai precisa ter as classes justify-end e start baseadas num useState, 
-            o filho precisa ser o motion object e precisa ter a função transition */}
+            o filho precisa ser o motion object e precisa ter a função transitin */}
             <div className={`bg-blue-100 flex ${isOpen ? "justify-end" : "justify-start"}`}>
                 <AnimatePresence>
                     <motion.button  layout transition={{type: "spring", visualDuration: 0.5, bounce: 0.1,

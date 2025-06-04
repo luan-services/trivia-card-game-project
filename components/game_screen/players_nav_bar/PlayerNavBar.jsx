@@ -22,11 +22,11 @@ const PlayerNavBar = ({playerArray}) => {
             o filho precisa ser o motion object e precisa ter a função transition */}
 
             {/*toggle menu */}
-            <div className={`bg-blue-100 p-1 rounded-lg flex ${isOpen ? "justify-end" : "justify-start"}`}>
+            <div className={`bg-blue-100 p-1 rounded-full w-5/10 flex ${isOpen ? "justify-end" : "justify-start"}`}>
                 <AnimatePresence>
-                    <motion.button  layout transition={{type: "spring", visualDuration: 0.5, bounce: 0.1,}}  
-                    className=" rounded-xl p-2 pl-4 pr-4 flex bg-amber-600" onClick={handleToggle}>
-                        <FontAwesomeIcon icon={isOpen ? faXmark : faUser} />
+                    <motion.button layout transition={{type: "spring", visualDuration: 0.5, bounce: 0.1,}}  
+                    className="flex rounded-full p-2 pl-4 pr-4 cursor-pointer bg-amber-600" onClick={handleToggle}>
+                        <FontAwesomeIcon className="text-blue-200" icon={isOpen ? faXmark : faUser} />
                     </motion.button>
                 </AnimatePresence>
             </div>
@@ -34,11 +34,11 @@ const PlayerNavBar = ({playerArray}) => {
             {/* this motion.div is a dropdown menu */}
             <AnimatePresence>
                 {isOpen && 
-                    <motion.div initial={{scaleY: 0}} animate={{scaleY: 1}} exit={{scaleY: 0}} transition={{duration: 0.1}} className="origin-top">
+                    <motion.div initial={{scaleY: 0}} animate={{scaleY: 1}} exit={{scaleY: 0}} transition={{duration: 0.1 }} className="origin-top">
                         {playerArray.map((value, index) => (
-                            <div className="flex flex-wrap bg-red-100" id={`\div-${index}`} key={index}>
-                                <div className="flex bg-red-300">jogador {index}</div>
-                                <div className="flex bg-red-300">{value}</div>
+                            <div className="flex flex-wrap p-1 bg-red-100" id={`\div-${index}`} key={index}>
+                                <div className="rounded-l-lg flex p-2 bg-red-300">jogador {index}</div>
+                                <div className="rounded-r-lg flex p-2 bg-red-300">{value}</div>
                             </div>
                         ))}
                     </motion.div>}

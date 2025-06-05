@@ -1,1 +1,30 @@
+@font-face {
+  font-family: Inter;
+  src: url("../src/assets/fonts/Inter-VariableFont_slntwght.ttf"), format("ttf"),
+}
+
+@font-face {
+  font-family: BalsamicSans;
+  src: url("../src/assets/fonts/BalsamiqSans-Regular.ttf"), format("ttf"),
+}
+
 @import "tailwindcss";
+
+
+@theme {
+  --font-inter: Inter, "sans-serif"
+}
+
+@theme {
+  --font-balsamic:BalsamicSans, "sans-serif"
+}
+
+
+@theme {
+  --color-custom-yellow-1: #FEFFDF;
+  --color-custom-yellow-2: #FFE79A;
+  --color-custom-yellow-3: #FFA952;
+  --color-custom-yellow-4: #EF5A5A;
+  --color-custom-yellow-5: #661010;
+  
+}

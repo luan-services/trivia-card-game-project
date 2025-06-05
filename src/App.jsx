@@ -18,11 +18,14 @@ function App() {
 
   return (
     <>
-      <div className="font-inter">
+      <div className="font-balsamic">
         <AnimatePresence>
-        {playerNumber < 1 && <SelectPlayerScreen changePlayerNumber={changePlayerNumber}></SelectPlayerScreen>}
+          {playerNumber < 1 && <SelectPlayerScreen changePlayerNumber={changePlayerNumber}></SelectPlayerScreen>}
         </AnimatePresence>
-        {playerNumber > 0 && <GameScreen playerNumber={playerNumber} />}
+        <AnimatePresence>
+          {playerNumber > 0 && <GameScreen playerNumber={playerNumber} />}
+        </AnimatePresence>
+        
       </div>
 
     </>

@@ -37,12 +37,12 @@ const SelectPlayerScreen = ({changePlayerNumber}) => {
           </div>
             
           <div className="flex justify-center text-center pb-1">
-                <h3 className="text-2xl font-bold font-balsamic "> 
-                    NEM A PATO
+                <h3 className="text-2xl font-bold"> 
+                    NEM A PINTO
                 </h3> 
             </div>
 
-            <div className="flex justify-center text-center pb-4 font-balsamic ">
+            <div className="flex justify-center text-center pb-4">
                 <h3 className="text-sm"> 
                     selecione a quantidade de jogadores
                 </h3> 
@@ -50,7 +50,7 @@ const SelectPlayerScreen = ({changePlayerNumber}) => {
 
             <div className="flex justify-center">
                           <ChangeNumberBtn text="-" onClick={() => changeDisplayNumber('subtract')}></ChangeNumberBtn> {/* função com parâmetro só pode ser passada do jeito acima */}
-            <span className="p-3 w-10  text-sm  text-center font-bold hover:cursor-pointer" >{displayNumber}</span>
+            <span className="p-3 w-10 text-sm  text-center font-bold hover:cursor-pointer font-inter" >{displayNumber}</span>
 
 
             <ChangeNumberBtn text="+" onClick={() => changeDisplayNumber('add')}></ChangeNumberBtn>

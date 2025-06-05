@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import PlayerNavBar from './players_nav_bar/PlayerNavBar';
 import { motion } from "motion/react"
+import GameBoard from './game_board/GameBoard';
 
 const GameScreen = ({playerNumber}) => {
     console.log(playerNumber)
@@ -33,15 +34,7 @@ const GameScreen = ({playerNumber}) => {
       <PlayerNavBar playerArray={values}></PlayerNavBar>
 
       {/* game container */}
-      <div className="container w-full min-h-screen flex flex-wrap justify-center items-center mx-auto py-10 px-4 sm:px-6 md:px-8 lg:px-10">
-        
-
-
-
-        {/* MAEK COMPONENT PLAYER SCREEN GAME SCREEN PASS DOWN FUNC TO UPDATE PLAYER SCREEN*/}
-        <button className='bg-yellow-200' onClick={() => {updateValues(0, 222)}}>update div 0 to 222</button>
-
-      </div>
+      <GameBoard increasePlayerPoints={updateValues}/>
 
       {/* exit button */}
 

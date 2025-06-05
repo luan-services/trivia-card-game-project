@@ -18,7 +18,7 @@ function App() {
 
   return (
     <>
-      <div className="font-balsamic">
+      <div className="select-none font-balsamic">
         <AnimatePresence>
           {playerNumber < 1 && <SelectPlayerScreen changePlayerNumber={changePlayerNumber}></SelectPlayerScreen>}
         </AnimatePresence>

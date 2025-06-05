@@ -39,10 +39,10 @@ const PlayerNavBar = ({playerArray}) => {
                     <motion.div initial={{scaleY: 0}} animate={{scaleY: 1}} exit={{scaleY: 0}} transition={{duration: 0.3 }} className="bg-white shadow-md rounded-b-xl p-2 pb-0 border-b-1 border-r-1 border-l-1 border-gray-300 origin-top">
                         {playerArray.map((value, index) => (
                             <div className="flex flex-wrap pb-2 pr-1" id={`\div-${index}`} key={index}>
-                                <div className="rounded-l-lg flex p-2 pr-3 pl-3 bg-green-300 w-28 justify-between font-bold text-xs">
-                                    <span>JOGADOR</span><span>{index + 1}</span>
+                                <div className="rounded-l-lg flex p-2 pr-3 pl-3 bg-green-300 w-28 justify-between font-inter font-bold text-xs">
+                                    <span>JOGADOR</span><span className="font-inter">{index + 1}</span>
                                 </div>
-                                <div className="rounded-r-lg flex p-2 bg-red-300 w-8 justify-center font-bold text-xs">{value}</div>
+                                <div className="rounded-r-lg flex p-2 bg-red-300 w-8 justify-center font-bold font-inter text-xs">{value}</div>
                             </div>
                         ))}
                     </motion.div>}

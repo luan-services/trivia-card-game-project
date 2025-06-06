@@ -1,5 +1,5 @@
 import React from 'react'
-import StackSwitcher from './asd'
+import CardDeck from './asd'
 
 const GameBoard = ({increasePlayerPoints}) => {
 
@@ -8,8 +8,7 @@ const GameBoard = ({increasePlayerPoints}) => {
   return (
       <div className="container w-full min-h-screen flex flex-col justify-center items-center mx-auto py-10 px-4 sm:px-6 md:px-8 lg:px-10">
         
-        <div>card</div>
-        <StackSwitcher/>
+        <CardDeck/>
 
 
         {/* MAEK COMPONENT PLAYER SCREEN GAME SCREEN PASS DOWN FUNC TO UPDATE PLAYER SCREEN*/}

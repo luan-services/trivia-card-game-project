@@ -1,101 +1,97 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
 
-const values = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry', 'Fig', 'Grape'];
+/* array of items */
+const values = ['oceano', 'pop', 'bolas', 'ciencia', 'futebol', 'geografia', 'historia'];
 
-const getRandomValue = (exclude) => {
-  let newValue;
-  do {
-    newValue = values[Math.floor(Math.random() * values.length)];
-  } while (newValue === exclude);
-  return newValue;
+/* function to shuffle */
+const randomize = (arr) => {
+  const array = [...arr];
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
 };
 
-const StackSwitcher = () => {
-  const [topValue, setTopValue] = useState(getRandomValue(null));
-  const [bottomValue, setBottomValue] = useState(getRandomValue(topValue));
-  const [isSwiping, setIsSwiping] = useState(false);
-  const [isUnlocked, setIsUnlocked] = useState(false);
+const CardDeck = () => {
 
-  const handleSwipe = () => {
-    setIsSwiping(true);
-    setTimeout(() => {
-      const newBottom = getRandomValue(topValue);
-      setTopValue(bottomValue);
-      setBottomValue(newBottom);
-      setIsSwiping(false);
-      setIsUnlocked(false); // lock the new top card
-    }, 300);
-  };
+    {/* set to make the exit= property work when div is swiped*/}
+    const [isSwiping, setIsSwiping] = useState(false);
+
+    {/* set to prevent locked divs to be moved (always the bottom div) */}
+    const [isUnlocked, setIsUnlocked] = useState(false);
+
+    {/* make a new useState array with a shuffled card deck */}
+    const [deck, setDeck] = useState(() => randomize(values));
+
+    {/* set the current position of the picked card */}
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const topValue = deck[currentIndex];
+    const bottomValue = deck[currentIndex + 1];
+
+    {/* motion to make the div rotates when swiping (tinder effect)*/}
+    const x = useMotionValue(0);
+    const rotate = useTransform(x, [-200, 200], [-15, 15]);
+
+    const handleSwipe = () => {
+        const nextIndex = currentIndex + 1;
+        if (nextIndex >= deck.length - 1) {
+            // Reshuffle when reaching the end
+            console.log('end')
+            const newDeck = randomize(values);
+            setDeck(newDeck);
+            setCurrentIndex(0);
+        }
+        setIsSwiping(true);
+        setTimeout(() => {
+            setCurrentIndex((prev) => prev + 1);
+            setIsSwiping(false);
+            setIsUnlocked(false);
+        }, 300);
+    };
 
   return (
-    <div style={{ position: 'relative', width: '240px', height: '260px', overflow: 'visible' }}>
-      {/* Bottom Card */}
-      <div
-        style={{
-          position: 'absolute',
-          width: '100%',
-          height: '100%',
-          backgroundColor: '#90be6d',
-          borderRadius: '12px',
-          zIndex: 1,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: 'white',
-          fontSize: '1.4rem',
-          padding: '20px',
-        }}
-      >
-        {bottomValue}
-        <button style={buttonStyle} disabled>
-          Locked
-        </button>
-      </div>
 
-      {/* Top Card */}
-      <AnimatePresence>
-        {!isSwiping && (
-          <motion.div
-            key={topValue}
-            drag={isUnlocked ? 'x' : false}
-            dragConstraints={{ left: 0, right: 0 }}
-            onDragEnd={(event, info) => {
-              if (!isUnlocked) return;
+    /* container for the cards */
+    <div className="relative w-60 h-65 overflow-visible">
 
-              if (Math.abs(info.offset.x) > 200) {
-                handleSwipe();
-              }
-            }}
-            initial={{ x: 0, opacity: 1 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: info => (info.offset.x < 0 ? -300 : 300), opacity: 0 }}
-            whileDrag={{ scale: 1.05 }}
-            style={{
-              position: 'absolute',
-              width: '100%',
-              height: '100%',
-              backgroundColor: '#f94144',
-              borderRadius: '12px',
-              zIndex: 2,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'white',
-              fontSize: '1.4rem',
-              padding: '20px',
-              cursor: isUnlocked ? 'grab' : 'default',
-            }}
-          >
-            {topValue}
-            <button style={buttonStyle} onClick={() => setIsUnlocked(true)}>
-              {isUnlocked ? 'Swipe Enabled' : 'Unlock to Swipe'}
+        {/* bottom card */}
+        <div className="absolute w-10/10 h-10/10 bg-yellow-200 text-white rounded-xl 
+            flex flex-col items-center justify-center text-lg p-5 z-10">
+            {bottomValue}
+            <button style={buttonStyle} disabled>
+                Locked
             </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+
+        {/* top card */}
+        <AnimatePresence>
+        {!isSwiping && 
+            <motion.div className="absolute w-10/10 h-10/10 bg-yellow-200 text-white rounded-xl flex flex-col items-center 
+                justify-center text-lg p-5 z-20"
+                key={topValue} drag={isUnlocked ? 'x' : false} dragConstraints={{ left: 0, right: 0 }}  whileDrag={{ scale: 1.05 }}
+                exit={{ opacity: 0 }}
+                onDragEnd={(ev, info) => {
+                    if (!isUnlocked) return;
+                    if (Math.abs(info.offset.x) > 100) {
+                        x.stop(); 
+                            handleSwipe();
+                            
+                            setTimeout(() => {
+                                x.set(0); // reset position for the next card
+                            }, 300);
+                    }}}
+                style={{
+                    x,
+                    rotate,
+                    cursor: isUnlocked ? 'grab' : 'default'}}>
+                {topValue}
+                <button className={` ${isUnlocked ? "cursor-grab" : "cursor-pointer"}`} style={buttonStyle} onClick={() => setIsUnlocked(true)}>
+                {isUnlocked ? 'Swipe Enabled' : 'Unlock to Swipe'}
+                </button>
+            </motion.div>}
+        </AnimatePresence>
     </div>
   );
 };
@@ -108,7 +104,6 @@ const buttonStyle = {
   borderRadius: '6px',
   backgroundColor: 'white',
   color: '#333',
-  cursor: 'pointer',
 };
 
-export default StackSwitcher;
+export default CardDeck;

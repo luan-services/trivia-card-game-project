@@ -64,13 +64,13 @@ const StackSwitcher = () => {
             onDragEnd={(event, info) => {
               if (!isUnlocked) return;
 
-              if (Math.abs(info.offset.x) > 100) {
+              if (Math.abs(info.offset.x) > 200) {
                 handleSwipe();
               }
             }}
             initial={{ x: 0, opacity: 1 }}
             animate={{ x: 0, opacity: 1 }}
-            exit={{ x: 0, opacity: 0 }}
+            exit={{ x: info => (info.offset.x < 0 ? -300 : 300), opacity: 0 }}
             whileDrag={{ scale: 1.05 }}
             style={{
               position: 'absolute',

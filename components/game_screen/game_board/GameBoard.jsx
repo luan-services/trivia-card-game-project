@@ -1,6 +1,6 @@
 import React from 'react'
 import CardDeck from './CardDeck'
-import ExitBtn from './ExitBtn'
+import Exit from './Exit'
 
 const GameBoard = () => {
 
@@ -12,7 +12,7 @@ const GameBoard = () => {
         <CardDeck/>
       </div>
       {/* exit button */}
-      <ExitBtn></ExitBtn>
+      <Exit></Exit>
     </div>
 
   )

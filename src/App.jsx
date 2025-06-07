@@ -18,14 +18,13 @@ function App() {
 
   return (
     <>
-      <div className="select-none font-balsamic">
+      <div className="select-none font-balsamic ">
         <AnimatePresence>
           {playerNumber < 1 && <SelectPlayerScreen changePlayerNumber={changePlayerNumber}></SelectPlayerScreen>}
         </AnimatePresence>
         <AnimatePresence>
           {playerNumber > 0 && <GameScreen playerNumber={playerNumber} />}
         </AnimatePresence>
-        <div className="bg-amber-300 b-1 fixed top-35 h-2 w-full z-200"></div>
       </div>
 
     </>

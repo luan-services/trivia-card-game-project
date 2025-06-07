@@ -16,12 +16,23 @@ const GameScreen = ({playerNumber}) => {
 
     }, [playerNumber])
 
-
-    {/* function to update points inside each player div */}
-    const updateValues = (n, newValue) => {
+    {/* function to increase points inside each player div */}
+    const increaseValues = (n) => {
       const newValues = [...values]
-      newValues[n] = newValue
-      setValues(newValues)
+      if (newValues[n] < 99) { 
+        newValues[n] = newValues[n] + 1
+        setValues(newValues)
+      }
+    }
+
+    {/* function to increase points inside each player div */}
+    const decreaseValues = (n) => {
+      const newValues = [...values]
+      if (newValues[n] > 0) { 
+        newValues[n] = newValues[n] - 1
+        setValues(newValues)
+      }
+      
     }
 
     
@@ -31,12 +42,11 @@ const GameScreen = ({playerNumber}) => {
     <motion.div initial={{opacity: 0}} animate={{opacity: 1}} exit={{opacity: 0}} transition={{duration: 0.5}}>
 
       {/* players navbar*/}
-      <PlayerNavBar playerArray={values}></PlayerNavBar>
+      <PlayerNavBar increasePlayerPoints={increaseValues} decreasePlayerPoints={decreaseValues} playerArray={values}></PlayerNavBar>
 
       {/* game container */}
-      <GameBoard increasePlayerPoints={updateValues}/>
+      <GameBoard/>
 
-      {/* exit button */}
 
 
     </motion.div>

@@ -1,20 +1,20 @@
 import React from 'react'
-import CardDeck from './asd'
+import CardDeck from './CardDeck'
+import ExitBtn from './ExitBtn'
 
-const GameBoard = ({increasePlayerPoints}) => {
+const GameBoard = () => {
 
 
 
   return (
-      <div className="container w-full min-h-screen flex flex-col justify-center items-center mx-auto py-10 px-4 sm:px-6 md:px-8 lg:px-10">
-        
+    <div>
+      <div className="container w-full min-h-screen flex flex-col justify-center items-center py-10 px-4 sm:px-6 md:px-8 lg:px-10">
         <CardDeck/>
-
-
-        {/* MAEK COMPONENT PLAYER SCREEN GAME SCREEN PASS DOWN FUNC TO UPDATE PLAYER SCREEN*/}
-        <button className='bg-yellow-200' onClick={() => {increasePlayerPoints(0, 222)}}>update div 0 to 222</button>
-
       </div>
+      {/* exit button */}
+      <ExitBtn></ExitBtn>
+    </div>
+
   )
 }
 

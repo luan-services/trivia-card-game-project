@@ -5,8 +5,9 @@ import { motion } from "motion/react"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
+import UpdatePointsBtn from './UpdatePointsBtn';
 
-const PlayerNavBar = ({playerArray}) => {
+const PlayerNavBar = ({increasePlayerPoints, decreasePlayerPoints, playerArray}) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -15,7 +16,7 @@ const PlayerNavBar = ({playerArray}) => {
     };
 
     return (
-        <div className="rounded-xl container z-10 fixed top-4 left-4  max-w-72 flex flex-col">
+        <div className="rounded-xl container z-30 fixed top-4 left-4  max-w-72 flex flex-col">
             {/* esse motion.div da toggle na animação de movimento para a direita, 
             o pai precisa ter as classes justify-end e start baseadas num useState, 
             o filho precisa ser o motion object e precisa ter a função transition */}
@@ -43,6 +44,8 @@ const PlayerNavBar = ({playerArray}) => {
                                     <span>JOGADOR</span><span className="font-inter">{index + 1}</span>
                                 </div>
                                 <div className="rounded-r-lg flex p-2 bg-red-300 w-8 justify-center font-bold font-inter text-xs">{value}</div>
+                                <UpdatePointsBtn onClick={() => decreasePlayerPoints(index)}>-</UpdatePointsBtn>
+                                <UpdatePointsBtn onClick={() => increasePlayerPoints(index)}>+</UpdatePointsBtn>
                             </div>
                         ))}
                     </motion.div>}

@@ -54,7 +54,7 @@ const CardDeck = () => {
   return (
 
     /* container for the cards */
-    <div className="relative w-60 h-65 overflow-visible">
+    <div className="relative w-64 h-92 overflow-visible">
 
         {/* bottom card */}
         <div className="absolute w-10/10 h-10/10 bg-yellow-200 text-white rounded-xl 

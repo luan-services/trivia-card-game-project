@@ -1,11 +1,18 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
-import {questionsAll} from "../../../objects/questions_category_first.js"
-
+import { animais } from "../../../objects/animais.js"
+import { arte } from "../../../objects/arte.js"
+import { ciencia } from "../../../objects/ciencia.js"
+import { cultura_brasileira } from "../../../objects/cultura_brasileira.js"
+import { cultura_pop } from "../../../objects/cultura_pop.js"
+import { games } from "../../../objects/games.js"
+import { geografia } from "../../../objects/geografia.js"
+import { historia } from "../../../objects/historia.js"
+import { musica } from "../../../objects/musica.js"
 import chickIcon from "../../../src/assets/images/cartoon-chick-icon.png"
 
 /* array of items */
-const values = questionsAll
+const values = [...animais, ...arte, ...ciencia, ...cultura_brasileira, ...cultura_pop, ...games, ...geografia, ...historia, ...musica]
 
 /* function to shuffle */
 const randomize = (arr) => {
@@ -64,12 +71,12 @@ const CardDeck = () => {
                 text-xl p-2 z-10">
 
 <div className="p-2 pb-0 w-full bg-custom-yellow-2 text-center rounded-lg font-bold items-center">
-                    <span>{bottomValue.category.toUpperCase()}</span>
+                    <span>{bottomValue.categoria.toUpperCase()}</span>
                     <img className="mx-auto max-h-6" src={chickIcon} alt="Chicke Logo"></img>
                 </div>
             
                 <div className=" p-2 mt-4 bg-gray-100 text-center rounded-lg font-inter font-bold text-sm">
-                    {bottomValue.question}
+                    {bottomValue.pergunta}
                 </div>
 
                 <div className="flex flex-col gap-8 mb-auto mt-auto">
@@ -98,7 +105,7 @@ const CardDeck = () => {
         {!isSwiping && 
             <motion.div className="absolute w-10/10 h-10/10 bg-white border-3 border-custom-yellow-5 rounded-xl flex flex-col items-center
                  text-xl p-2 z-20"
-                key={topValue.category} drag={isUnlocked ? 'x' : false} dragConstraints={{ left: 0, right: 0 }}  whileDrag={{ scale: 1.05 }}
+                key={topValue.categoria} drag={isUnlocked ? 'x' : false} dragConstraints={{ left: 0, right: 0 }}  whileDrag={{ scale: 1.05 }}
                 exit={{ opacity: 0 }}
                 onDragEnd={(ev, info) => {
                     if (!isUnlocked) return;
@@ -116,12 +123,12 @@ const CardDeck = () => {
                     cursor: isUnlocked ? 'grab' : 'default'}}>
 
                 <div className="p-2 pb-0 w-full bg-custom-yellow-2 text-center rounded-lg font-bold items-center">
-                    <span>{topValue.category.toUpperCase()}</span>
+                    <span>{topValue.categoria.toUpperCase()}</span>
                     <img className="mx-auto max-h-6" src={chickIcon} alt="Chicke Logo"></img>
                 </div>
             
                 <div className=" p-2 mt-4 bg-gray-100 text-center rounded-lg font-inter font-bold text-sm">
-                    {topValue.question}
+                    {topValue.pergunta}
                 </div>
 
                 <div className="flex flex-col gap-8 mb-auto mt-auto">
@@ -139,11 +146,11 @@ const CardDeck = () => {
 
                     {isUnlocked && <div>
                         <div className="mt-2 p-2 bg-gray-100 text-center rounded-lg  font-inter font-bold  text-sm">
-                        {topValue.answer}
+                        {topValue.resposta}
 
                         </div>
                         <div className="mt-2 p-2 bg-gray-100 text-center rounded-lg  font-inter font-bold  text-sm">
-                        {topValue.fact}
+                        {topValue.fato}
 
                         </div>
                     </div>}

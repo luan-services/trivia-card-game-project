@@ -23,7 +23,7 @@ const PlayerNavBar = ({increasePlayerPoints, decreasePlayerPoints, playerArray})
 
             {/*toggle menu */}
             <div className={`bg-white rounded-t-xl p-1 border-t-1 shadow-md border-r-1 border-l-1 border-gray-300 ${isOpen ? "" : "border-b-1 rounded-b-xl delay-250"}`}>
-                <div className={`border-4 border-yellow-300 bg-yellow-300 rounded-full w-4/10 flex ${isOpen ? "justify-end" : "justify-start"}`}>
+                <div className={`border-4 bg-custom-yellow-2 border-custom-yellow-2 rounded-full w-4/10 flex ${isOpen ? "justify-end" : "justify-start"}`}>
                     <AnimatePresence>
                         <motion.button layout transition={{type: "spring", visualDuration: 0.5, bounce: 0.1,}}  
                         className=" border-amber-300 flex rounded-full p-1 pl-4 pr-4 cursor-pointer bg-white" onClick={handleToggle}>
@@ -40,12 +40,17 @@ const PlayerNavBar = ({increasePlayerPoints, decreasePlayerPoints, playerArray})
                     <motion.div initial={{scaleY: 0}} animate={{scaleY: 1}} exit={{scaleY: 0}} transition={{duration: 0.3 }} className="bg-white shadow-md rounded-b-xl p-2 pb-0 border-b-1 border-r-1 border-l-1 border-gray-300 origin-top">
                         {playerArray.map((value, index) => (
                             <div className="flex flex-wrap pb-2 pr-1" id={`\div-${index}`} key={index}>
-                                <div className="rounded-l-lg flex p-2 pr-3 pl-3 bg-green-300 w-28 justify-between font-inter font-bold text-xs">
+                                <div className="rounded-l-lg flex p-2 pr-3 pl-3 border-custom-yellow-4 border-2 w-28 justify-between font-inter font-bold text-xs">
                                     <span>JOGADOR</span><span className="font-inter">{index + 1}</span>
                                 </div>
-                                <div className="rounded-r-lg flex p-2 bg-red-300 w-8 justify-center font-bold font-inter text-xs">{value}</div>
-                                <UpdatePointsBtn onClick={() => decreasePlayerPoints(index)}>-</UpdatePointsBtn>
-                                <UpdatePointsBtn onClick={() => increasePlayerPoints(index)}>+</UpdatePointsBtn>
+                                <div className="rounded-r-lg flex p-2 border-custom-yellow-4 border-2 border-l-0 w-8 justify-center items-center font-bold font-inter text-xs">
+                                    {value}
+                                </div>
+                                <div className="flex justify-center pl-2 items-center gap-2">
+                                    <UpdatePointsBtn onClick={() => decreasePlayerPoints(index)}>-</UpdatePointsBtn>
+                                    <UpdatePointsBtn onClick={() => increasePlayerPoints(index)}>+</UpdatePointsBtn>
+                                </div>
+
                             </div>
                         ))}
                     </motion.div>}

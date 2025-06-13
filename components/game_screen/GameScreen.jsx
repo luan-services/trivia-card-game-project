@@ -45,7 +45,10 @@ const GameScreen = ({playerNumber}) => {
       <PlayerNavBar increasePlayerPoints={increaseValues} decreasePlayerPoints={decreaseValues} playerArray={values}></PlayerNavBar>
 
       {/* game container */}
-      <GameBoard/>
+      <div className="flex justify-center">
+        <GameBoard/>
+      </div>
+
 
 
 
